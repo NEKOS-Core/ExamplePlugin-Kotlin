@@ -10,6 +10,6 @@ class ExamplePlugin() : Plugin(), Listener {
     @EventHandler
     fun onMessage(e: MessageEvent) {
         println("Very WIP! Testing message... Content passed along was: " + e.content)
-    }   
-    
+    }
+
 }

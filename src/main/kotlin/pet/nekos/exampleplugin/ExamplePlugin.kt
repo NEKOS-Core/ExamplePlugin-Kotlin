@@ -13,7 +13,7 @@ class ExamplePlugin() : Plugin(), Listener {
     fun onMessage(e: MessageEvent) {
         println("Very WIP!" + "\nName: " + e.msg.user.name + "\nNickname: " + e.msg.user.nickname + "\nContent: " + e.msg.content)
         if (e.msg is ChatMessage) {
-            if (!(e.msg as ChatMessage).isOwn()) {
+            if (!e.msg.isOwn()) {
                 (e.msg as ChatMessage).reply("Testing")
 
             }

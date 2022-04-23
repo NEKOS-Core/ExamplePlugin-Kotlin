@@ -11,10 +11,11 @@ class ExamplePlugin() : Plugin(), Listener {
 
     @EventHandler
     fun onMessage(e: MessageEvent) {
-        println("Very WIP!" + "\nName: " + e.msg.user.name + "\nNickname: " + e.msg.user.nickname + "\nContent: " + e.msg.content + "\nUser hash: " + e.msg.user.hash)
+        val message = "\nName: " + e.msg.user.name + "\nNickname: " + e.msg.user.nickname + "\nContent: " + e.msg.content + "\nUser hash: " + e.msg.user.hash
         if (e.msg is ChatMessage) {
             if (!e.msg.isOwn()) {
-                (e.msg as ChatMessage).reply("Testing")
+                (e.msg as ChatMessage).reply(message)
+                println(message)
 
             }
         }

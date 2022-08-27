@@ -5,9 +5,9 @@ import pet.nekos.api.event.Listener
 import pet.nekos.api.event.EventHandler
 import pet.nekos.api.event.message.MessageEvent
 
-import pet.nekos.api.entities.message.ChatMessage
-import pet.nekos.api.entities.user.User
-import pet.nekos.api.entities.guild.Guild
+import pet.nekos.api.entities.*
+
+import java.io.File
 
 class ExamplePlugin() : Plugin(), Listener {
 
@@ -18,10 +18,10 @@ class ExamplePlugin() : Plugin(), Listener {
     }
 
     @EventHandler
-    fun onChatMessage(e: MessageEvent, c: ChatMessage) {
-        val message = "Retrieved only from message object:\n" + "\nName: " + c.user.name + "\nNickname: " + c.user.nickname + "\nContent: " + c.content + "\nUser hash: " + c.user.hash
-        if (!c.isOwn()) {
-            c.reply(message)
+    fun onChatMessage(e: MessageEvent, m: Message) {
+        val message = "Retrieved only from message object:\n" + "\nName: " + m.user.name + "\nNickname: " + m.user.nickname + "\nContent: " + m.content + "\nUser hash: " + m.user.hash
+        if (!m.isOwn()) {
+            m.reply(message)
         }
     }
 
@@ -35,11 +35,11 @@ class ExamplePlugin() : Plugin(), Listener {
     }
 
     @EventHandler
-    fun onChatMessage(e: MessageEvent, c: ChatMessage, g: Guild) {
-        val message = "Retrieved from message that must be from a guild:\n" + "Guild name: " + g.name + "\nContent: " + c.content + "\nName: " + c.user.name +  "\nNickname: " + c.user.nickname + "\nUser hash: " + c.user.hash
+    fun onChatMessage(e: MessageEvent, m: Message, g: Guild) {
+        val message = "Retrieved from message that must be from a guild:\n" + "Guild name: " + g.name + "\nContent: " + m.content + "\nName: " + m.user.name +  "\nNickname: " + m.user.nickname + "\nUser hash: " + m.user.hash
         println("Event getting message from guild")
-        if (!c.isOwn()) {
-            c.reply(message)
+        if (!m.isOwn()) {
+            m.reply(message)
         }
     }
 
